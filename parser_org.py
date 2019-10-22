@@ -156,6 +156,14 @@ class Organization:
         return get_el(og, 'email')
 
     @staticmethod
+    def actual(og):
+        return get_el(og, 'actual')
+
+    @staticmethod
+    def register(og):
+        return get_el(og, 'register')
+
+    @staticmethod
     def contact_name(og):
         lastName = get_el(og, 'contactPerson', 'lastName')
         firstName = get_el(og, 'contactPerson', 'firstName')
@@ -180,6 +188,8 @@ def parser_o(org, path):
     fax = Organization.fax(org)
     email = Organization.email(org)
     contact_name = Organization.contact_name(org)
+    actual = 1 if Organization.actual(org) == 'true' else 0
+    register = 1 if Organization.register(org) == 'true' else 0
     contracts_count = 0
     contracts223_count = 0
     contracts_sum = 0.0
@@ -192,11 +202,11 @@ def parser_o(org, path):
         query1 = f"""INSERT INTO od_customer{SUFFIX} SET regNumber = %s, inn = %s, kpp = %s, contracts_count = %s, 
                 contracts223_count = %s, contracts_sum = %s, contracts223_sum = %s, ogrn = %s, region_code = %s, 
                 full_name = %s, short_name = %s, postal_address = %s, phone = %s, fax = %s, email = %s, 
-                contact_name = %s"""
+                contact_name = %s, actual = %s, register = %s"""
         value1 = (
             regNumber, inn, kpp, contracts_count, contracts223_count, contracts_sum, contracts223_sum, ogrn,
             region_code,
-            full_name, short_name, postal_address, phone, fax, email, contact_name)
+            full_name, short_name, postal_address, phone, fax, email, contact_name, actual, register)
         cur.execute(query1, value1)
         Organization.log_insert += 1
         cur.execute(f"""SELECT id FROM od_customer{SUFFIXOD} WHERE regNumber=%s""", (regNumber,))
@@ -217,11 +227,11 @@ def parser_o(org, path):
         query2 = f"""UPDATE od_customer{SUFFIX} SET inn = %s, kpp = %s, contracts_count = %s, contracts223_count = %s, 
                 contracts_sum = %s, contracts223_sum = %s, ogrn = %s, region_code = %s, full_name = %s, short_name = %s,
                 postal_address = %s, phone = %s, fax = %s, email = %s, 
-                contact_name = %s WHERE regNumber = %s"""
+                contact_name = %s, actual = %s, register = %s WHERE regNumber = %s"""
         value2 = (
             inn, kpp, contracts_count, contracts223_count, contracts_sum, contracts223_sum, ogrn, region_code,
             full_name, short_name,
-            postal_address, phone, fax, email, contact_name, regNumber)
+            postal_address, phone, fax, email, contact_name, actual, register, regNumber)
         cur.execute(query2, value2)
         Organization.log_update += 1
         cur.execute(f"""SELECT id FROM od_customer{SUFFIXOD} WHERE regNumber=%s""", (regNumber,))
