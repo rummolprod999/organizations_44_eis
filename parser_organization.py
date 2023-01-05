@@ -87,7 +87,7 @@ def get_list_ftp(path_parse):
     data = ftp2.nlst()
     array_ar = []
     for i in data:
-        if i.find('2016') != -1 or i.find('2017') != -1 or i.find('2018') != -1 or i.find('2019') != -1 or i.find('2020') != -1 or i.find('2021') != -1 or i.find('2022') != -1:
+        if i.find('2016') != -1 or i.find('2017') != -1 or i.find('2018') != -1 or i.find('2019') != -1 or i.find('2020') != -1 or i.find('2021') != -1 or i.find('2022') != -1 or i.find('2023') != -1:
             array_ar.append(i)
 
     return array_ar

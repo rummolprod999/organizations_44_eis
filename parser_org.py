@@ -121,6 +121,17 @@ class Organization:
         return get_el(og, 'OGRN')
 
     @staticmethod
+    def factual_address(og):
+        return get_el(og, 'factualAddress', 'addressLine')
+
+    @staticmethod
+    def resp_role(og):
+        try:
+            return get_el(og, 'organizationRoles', 'organizationRoleItem', 'organizationRole')
+        except Exception:
+            return ''
+
+    @staticmethod
     def region_code(og):
         r_c = get_el(og, 'factualAddress', 'region', 'kladrCode')
         if not r_c:
@@ -184,6 +195,8 @@ def parser_o(org, path):
     full_name = Organization.full_name(org)
     short_name = Organization.short_name(org)
     postal_address = Organization.postal_address(org)
+    factual_address = Organization.factual_address(org)
+    resp_role = Organization.resp_role(org)
     phone = Organization.phone(org)
     fax = Organization.fax(org)
     email = Organization.email(org)
@@ -254,6 +267,20 @@ def parser_o(org, path):
         #                 contact_name = %s WHERE regNumber = %s""".format(SUFFIX)
         # cur.execute(query4, value2)
         # Organization.update_new_customer += 1
+    cur.execute(f"""SELECT * FROM organizer WHERE inn = %s  AND kpp = %s""", (inn, kpp))
+    resinn = cur.fetchone()
+    if not resinn:
+        query4 = f"""INSERT INTO organizer SET reg_num = %s, full_name = %s, post_address = %s, fact_address = %s, inn = %s, kpp = %s, 
+        responsible_role = %s, contact_person = %s, contact_email = %s, contact_phone = %s, contact_fax = %s"""
+        value4 = (
+            regNumber,full_name, postal_address, factual_address, inn, kpp, resp_role, contact_name, email, phone, fax)
+        cur.execute(query4, value4)
+    else:
+        query4 = f"""UPDATE organizer SET reg_num = %s, full_name = %s, post_address = %s, fact_address = %s, 
+                responsible_role = %s, contact_person = %s, contact_email = %s, contact_phone = %s, contact_fax = %s WHERE inn = %s AND kpp = %s"""
+        value4 = (
+            regNumber, full_name, postal_address, factual_address, resp_role, contact_name, email, phone, fax, inn, kpp)
+        cur.execute(query4, value4)
     cur.close()
     con.close()
 
