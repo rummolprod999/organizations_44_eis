@@ -1,11 +1,11 @@
 
-rpython:S117¯"ZRename this local variable "regNumber" to match the regular expression ^[_a-z][a-z0-9_]*$.(¿›¸Ù
-6python:S125"Remove this commented out code.(ÂÿÜ 
-wpython:S117©"ZRename this local variable "firstName" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒ‘§ìÿÿÿÿÿ
-qpython:S3776%"TRefactor this function to reduce its Cognitive Complexity from 19 to the 15 allowed.(½ö–—ùÿÿÿÿ
-<python:S125†"Remove this commented out code.(Úø¦ëüÿÿÿÿ
-<python:S125û"Remove this commented out code.(¬öÔµÿÿÿÿÿ
 6python:S125"Remove this commented out code.(ÂÿÜ 
-vpython:S117¨"YRename this local variable "lastName" to match the regular expression ^[_a-z][a-z0-9_]*$.(ãÛóéýÿÿÿÿ
+6python:S125"Remove this commented out code.(ÂÿÜ 
+qpython:S3776%"TRefactor this function to reduce its Cognitive Complexity from 19 to the 15 allowed.(½ö–—ùÿÿÿÿ
 ipython:S100l"MRename method "regNumber" to match the regular expression ^[a-z_][a-z0-9_]*$.(žÅýúÿÿÿÿ
-xpython:S117ª"[Rename this local variable "middleName" to match the regular expression ^[_a-z][a-z0-9_]*$.(õÂÇµÿÿÿÿÿ
+wpython:S117´"ZRename this local variable "firstName" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒ‘§ìÿÿÿÿÿ
+vpython:S117³"YRename this local variable "lastName" to match the regular expression ^[_a-z][a-z0-9_]*$.(ãÛóéýÿÿÿÿ
+xpython:S117µ"[Rename this local variable "middleName" to match the regular expression ^[_a-z][a-z0-9_]*$.(õÂÇµÿÿÿÿÿ
+rpython:S117º"ZRename this local variable "regNumber" to match the regular expression ^[_a-z][a-z0-9_]*$.(¿›¸Ù
+<python:S125ˆ"Remove this commented out code.(¬öÔµÿÿÿÿÿ
+<python:S125¡"Remove this commented out code.(Úø¦ëüÿÿÿÿ
