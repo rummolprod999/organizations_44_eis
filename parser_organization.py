@@ -142,7 +142,7 @@ def extract_prot(m, path_parse1):
 def down_timeout(m, path_parse1):
     host = 'ftp.zakupki.gov.ru'
     ftpuser = 'free'
-    password = 'free'
+    password = 'otkluchenie_FTP_s_01_01_2025_podrobnee_v_ATFF'
     ftp2 = ftplib.FTP(host)
     ftp2.set_debuglevel(0)
     ftp2.encoding = 'utf8'
